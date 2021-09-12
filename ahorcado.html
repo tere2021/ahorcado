@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Ahorcado</title>
+</head>
+<body>
+    <script>
+        //arreglo con palabras
+        var palabras=["canto","bosque","internet","silla","profesor"];
+        
+        //elije una palabra azar
+        var palabraIncognita=palabras[Math.floor(Math.random()*palabras.length)];
+        
+        //configira el arreglo respuesta
+        var letrasSinIncognitas=[];
+        for(var i=0;i<palabraIncognita.length;i++){
+            letrasSinIncognitas[i]="_";  
+        }
+        var numeroDeLetras=palabraIncognita.length;
+
+        //ciclo del juevo
+        while(numeroDeLetras>0){
+            //muestra el progreso del juego
+            alert(letrasSinIncognitas.join(" "));
+
+            //el jugador ingresa una letra para adivinar
+            var letraIngresada=prompt("Adivina una letra o haga clic en Cancelar para detener el juego");
+            if(letraIngresada===null){
+                //sale del ciclo
+                break;
+            } else if(letraIngresada.length!==1){
+                alert("Introduzca una sola letra.");
+            }else{
+               //actualiza el estado del juego con la letra ingresada x el jugador
+                for(var j=0;j<palabraIncognita.length;j++){
+                    if(palabraIncognita[j]===letraIngresada){
+                        letrasSinIncognitas[j]=letraIngresada;
+                        numeroDeLetras--;
+                    }
+                }
+            }
+            //fin del ciclo y del juego
+        }
+        //muestra la respuesta y felicita al jugador
+        alert(letrasSinIncognitas.join(" "));
+        alert("Bien echo! la respuesta fue " + palabraIncognita);
+    </script>
+    
+</body>
+</html>
